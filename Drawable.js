@@ -58,13 +58,6 @@ class Drawable {
         this.oldX = this.x;
         this.oldY = this.y;
 
-        this.handleCollision();
-
-        this.handleVelocity();
-
-        if( (this.oldX != this.x || this.oldY != this.y) ){
-            this.networkUpdate();
-        }
     }
 
     paint(){

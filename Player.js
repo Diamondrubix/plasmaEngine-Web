@@ -22,20 +22,24 @@ class Player extends Drawable{
 
 
         if(keys.indexOf("d")!=-1){
-            this.xVel += this.speed;
+
+            this.x++;
+
         }
 
         if(keys.indexOf("a")!=-1){
-            this.xVel -= this.speed;
+
+            this.x--;
         }
 
 
         if(keys.indexOf("w")!=-1){
-            this.yVel -= this.speed;
+
+            this.y--;
         }
 
         if(keys.indexOf("s")!=-1){
-            this.yVel += this.speed;
+            this.y++;
         }
 
 
