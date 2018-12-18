@@ -6,6 +6,7 @@ var http = require('http').Server(app);
 //var io = require('socket.io')(http);
 io = require('socket.io').listen(http);
 
+app.use(express.static(__dirname + '/'));
 
 
 app.get('/', function(req, res){

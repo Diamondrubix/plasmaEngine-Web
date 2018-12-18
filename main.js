@@ -20,5 +20,32 @@ function setup(){
     guy.keys = true;
     gameObjects.push(guy);
 
-
 }
+
+function draw(){
+
+    cx.beginPath();
+    cx.fillStyle = "green";
+    cx.fillRect(0,0,canvas.width,canvas.height);
+    cx.fill();
+
+    for(var i=0; i < gameObjects.length; i++){
+        gameObjects[i].tick();
+        gameObjects[i].paint();
+    }
+}
+
+function gameLoop() {
+    window.requestAnimationFrame(gameLoop);
+
+
+    currentTime = (new Date()).getTime();
+    delta = (currentTime - lastTime) / 1000;
+    cx.clearRect(0, 0, cw, cw);
+
+    draw();
+
+    lastTime = currentTime;
+}
+
+setup()

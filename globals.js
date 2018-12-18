@@ -20,7 +20,7 @@ camera = {
     xOff : 0,
     yOff : 0
 };
-net = new network("gameroom1");
+//net = new network("gameroom1");
 
 mouseDown = false;
 oldMouseX = 0;
