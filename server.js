@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/'));
 
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/game.html');
+    res.sendFile(__dirname + '/Client/game.html');
 });
 
 

@@ -1,4 +1,15 @@
 
+//not sure if these two functions work, but either way we should callthem to veify if it is node or client
+//we can always change the implementation later
+function isNode(){
+    return !isClient();
+}
+
+
+function isClient(){
+    return typeof module == 'undefined';
+}
+
 
 class Drawable {
 

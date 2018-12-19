@@ -81,12 +81,6 @@ class Player extends Drawable{
 
     }
 
-    networkUpdate(){
-        if(isClient()){
-            net.send(this);
-        }
-    }
-
     tick(){
         this.handleKeys();
         super.tick();
