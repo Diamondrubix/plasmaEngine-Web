@@ -21,6 +21,10 @@ io.on('connection', function(socket){
 
     socket.on('gameroom1', function(msg){
 
+
+
+
+
         io.emit("gameroom1", msg);
     });
     socket.on('disconnect', function(){
