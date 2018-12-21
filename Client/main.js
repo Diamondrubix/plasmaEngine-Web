@@ -9,6 +9,8 @@ function setup(){
         gameLoop();
     }
 
+
+
     //keys setup
     window.addEventListener('keydown',keydown,false);
     window.addEventListener('keyup',keyup,false);

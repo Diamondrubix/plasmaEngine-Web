@@ -32,6 +32,7 @@ class Drawable {
         this.classType = "Drawable";
     }
 
+    //double check and rework
     collide(r){
         var happend = (this.x < r.x + r.width && this.x + this.width > r.x && this.y < r.y + r.height && this.y + this.height > r.y);
 
@@ -54,6 +55,7 @@ class Drawable {
 
     }
 
+    //same deal
     onCollision(callback){
         for(var i=0; i<gameObjects.length;i++){
             if(gameObjects[i]!=this){
@@ -64,6 +66,7 @@ class Drawable {
             }
         }
     }
+
 
     tick(){
         this.oldX = this.x;
