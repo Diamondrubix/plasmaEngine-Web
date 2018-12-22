@@ -83,3 +83,7 @@ class Drawable {
 
 
 }
+
+if(isNode()){
+    module.exports = Drawable;
+}

@@ -17,11 +17,11 @@ app.get('/', function(req, res){
 });
 
 
-function applyForce(){
+function applyForce(la,da){
 
 }
 
-function emitAttack(){
+function emitAttack(la,da){
     
 }
 
@@ -44,14 +44,14 @@ io.on('connection', function(socket){
 
     socket.on("matchMaker", function(msg){
         console.log("matchmaker working")
-        let player = Player(10,10, socket.id);
+        let player = new Player(10,10, socket.id);
         let match = {
             "gameroom" : "gameroom1",
-            "player": []
+            "players": []
         }
-        match.player.append(player);
+        match.players.push(player);
 
-        matches.append(match);
+        matches.push(match);
 
         io.emit("matchMaker", "gameroom1");
 

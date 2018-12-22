@@ -4,8 +4,8 @@ will control all net activity
 
 class Network {
 
-    constructor(gameroom) {
-        this.gameroom = gameroom;
+    constructor() {
+        this.gameroom = null;
         this.socket = io();
     }
 
@@ -15,7 +15,6 @@ class Network {
             this.gameroom = msg;
             console.log(this.gameroom);
         });
-
     }
  
     send(msg) {
