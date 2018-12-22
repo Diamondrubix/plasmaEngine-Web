@@ -2,6 +2,9 @@ express = require('express');
 app = express();
 path = require('path');
 
+Drawable = require('./Drawables/Drawable.js');
+Player = require('./Drawables/Player.js');
+
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);
 io = require('socket.io').listen(http);
@@ -29,19 +32,43 @@ events = {
 }
 
 
+matches = [];
 
 
 io.on('connection', function(socket){
 
-
     console.log('a user connected');
     console.log(socket.id);
 
+
+
+    socket.on("matchMaker", function(msg){
+        console.log("matchmaker working")
+        let player = Player(10,10, socket.id);
+        let match = {
+            "gameroom" : "gameroom1",
+            "player": []
+        }
+        match.player.append(player);
+
+        matches.append(match);
+
+        io.emmit("matchMaker", "gameroom1");
+
+
+    });
+
+
     socket.on('gameroom1', function(msg){
-        
-        events[msg.event](msg.id,msg); 
+
+        match = {
+            "gameroom": "gameroom1",
+        }
+
+        events[msg.event](msg.id,msg);
 
         io.emit("gameroom1", msg);
+
     });
 
 

@@ -1,13 +1,13 @@
 class Player extends Drawable{
 
 
-    constructor(x,y) {
+    constructor(x,y, id) {
 
         super(x,y,30,30,"red")
 
         this.classType = "Player";
         this.speed = 2;
-
+        this.id = id;
 
         this.oldX = x;
         this.oldY = y;

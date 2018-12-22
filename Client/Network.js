@@ -8,6 +8,15 @@ class Network {
         this.gameroom = gameroom;
         this.socket = io();
     }
+
+    getmatch(){
+        this.socket.emit("matchMaker","thing");
+        this.socket.on("matchMaker",function(msg){
+            this.gameroom = msg;
+            console.log(this.gameroom);
+        });
+
+    }
  
     send(msg) {
         this.socket.emit(this.gameroom, msg);
@@ -24,3 +33,4 @@ class Network {
     }
 
 }
+
