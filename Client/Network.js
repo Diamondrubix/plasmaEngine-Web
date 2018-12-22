@@ -8,7 +8,7 @@ class Network {
         this.gameroom = gameroom;
         this.socket = io();
     }
-
+ 
     send(msg) {
         this.socket.emit(this.gameroom, msg);
         //this.socket.send(this.gameroom, msg);

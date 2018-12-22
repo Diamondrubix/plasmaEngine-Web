@@ -14,19 +14,37 @@ app.get('/', function(req, res){
 });
 
 
+function applyForce(){
+
+}
+
+function emitAttack(){
+    
+}
+
+
+events = {
+   "force": applyForce,
+   "attack":   emitAttack
+}
+
+
+
+
 io.on('connection', function(socket){
 
-    console.log('a user connected');
 
+    console.log('a user connected');
+    console.log(socket.id);
 
     socket.on('gameroom1', function(msg){
-
-
-
-
+        
+        events[msg.event](msg.id,msg); 
 
         io.emit("gameroom1", msg);
     });
+
+
     socket.on('disconnect', function(){
         console.log('user disconnected');
     });
@@ -36,16 +54,7 @@ io.on('connection', function(socket){
 
 
 var port = 3001;
-/*
-http.on('error', function(e){
-    port = 80;
-    http.listen(port, function () {
-        console.log('listening on port '+port);
-    });
-
-})
-*/
-
 http.listen(port, function () {
     console.log('listening on port '+port);
 });
+

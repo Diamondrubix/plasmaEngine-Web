@@ -23,23 +23,23 @@ class Player extends Drawable{
 
         if(keys.indexOf("d")!=-1){
 
-            this.x++;
+            //this.x++;
 
         }
 
         if(keys.indexOf("a")!=-1){
 
-            this.x--;
+            //this.x--;
         }
 
 
         if(keys.indexOf("w")!=-1){
 
-            this.y--;
+            //this.y--;
         }
 
         if(keys.indexOf("s")!=-1){
-            this.y++;
+            //this.y++;
         }
 
 
