@@ -53,7 +53,7 @@ io.on('connection', function(socket){
 
         matches.append(match);
 
-        io.emmit("matchMaker", "gameroom1");
+        io.emit("matchMaker", "gameroom1");
 
 
     });
