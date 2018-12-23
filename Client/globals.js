@@ -21,7 +21,7 @@ camera = {
     yOff : 0
 };
 //net = null;
-net = new Network("matchMaker");
+net = new Network("");
 
 mouseDown = false;
 oldMouseX = 0;

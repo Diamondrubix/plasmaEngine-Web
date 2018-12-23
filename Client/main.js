@@ -29,7 +29,11 @@ function setup(){
     guy = new Player(10,10);
     guy.keys = true;
     gameObjects.push(guy);
-
+    /*
+    net.receive(function(m){
+        match = m;
+    })
+    */
 }
 function keydown(e) {
     index = keys.indexOf(e.key);
@@ -41,7 +45,7 @@ function keydown(e) {
 
 function keyup(e) {
     index = keys.indexOf(e.key);
-    console.log("keyup "+index+" key: "+e.key);
+    //console.log("keyup "+index+" key: "+e.key);
     if (index > -1) {
         keys.splice(index, 1);
     }

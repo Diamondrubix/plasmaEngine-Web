@@ -1,4 +1,3 @@
-
 //not sure if these two functions work, but either way we should callthem to veify if it is node or client
 //we can always change the implementation later
 function isNode(){
@@ -9,7 +8,6 @@ function isNode(){
 function isClient(){
     return typeof module == 'undefined';
 }
-
 
 class Drawable {
 
@@ -31,6 +29,7 @@ class Drawable {
 
         this.classType = "Drawable";
     }
+
 
     //double check and rework
     collide(r){
@@ -82,4 +81,10 @@ class Drawable {
     }
 
 
+}
+
+
+//what does this block of code do and why does everything break when i remove it
+if (typeof module !== 'undefined') {
+    module.exports = Drawable;
 }
