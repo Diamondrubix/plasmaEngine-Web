@@ -23,9 +23,11 @@ app.get('/', function(req, res){
 
 matches = [];
 match = {
-    "gameroom" : "gameroom1",
+    "gameroom": "gameroom1",
     "players": []
 }
+
+
 matches.push(match);
 //helper function to find the right player
 function getPlayer(matchid, id){
@@ -54,8 +56,19 @@ io.on('connection', function(socket){
     socket.on("matchMaker", function(msg){
         console.log("matchmaker working")
         let player = new Player(10,10, socket.id);
+
         matches[0].players.push(player);
         io.emit("matchMaker", "gameroom1");
+        let match = {
+            "gameroom" : "gameroom1",
+            "players": []
+        }
+        match.players.push(player);
+
+        matches.push(match);
+
+        io.emit("matchMaker", "gameroom1");
+
 
     });
 

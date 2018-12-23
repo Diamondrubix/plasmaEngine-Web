@@ -85,6 +85,10 @@ class Drawable {
 
 
 //what does this block of code do and why does everything break when i remove it
+
 if (typeof module !== 'undefined') {
+    module.exports = Drawable;
+}
+if(isNode()){
     module.exports = Drawable;
 }

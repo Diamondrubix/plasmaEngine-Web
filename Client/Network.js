@@ -5,9 +5,9 @@ will control all net activity
  */
 class Network {
 
-    constructor(gameroom) {
-        console.log("constructor of network called");
-        this.gameroom = gameroom;
+
+    constructor() {
+        this.gameroom = null;
         this.socket = io();
         this.match = null;
     }
@@ -24,8 +24,7 @@ class Network {
                 //console.log(net.match.players[0].x);
             })
         })
-
-    }
+        }
  
     send(msg) {
         this.socket.emit(this.gameroom, msg);

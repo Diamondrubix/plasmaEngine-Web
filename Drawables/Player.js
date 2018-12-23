@@ -1,4 +1,14 @@
 
+function isNode(){
+    return !isClient();
+}
+
+
+function isClient(){
+    return typeof module == 'undefined';
+}
+
+
 
 class Player extends Drawable{
 
@@ -109,3 +119,6 @@ if (typeof module !== 'undefined') {
 }
 
 
+if(isNode()){
+    module.exports = Player;
+}
