@@ -54,7 +54,6 @@ class Player extends Drawable{
 
 
             if (keys.indexOf("w") != -1) {
-                net.send({"event": "attack"});
                 yforce-=this.speed;
                 //this.y--;
             }
@@ -86,6 +85,13 @@ class Player extends Drawable{
             )
         }
 
+        if(keys.indexOf("r")!=-1){
+            this.events.push(
+                {
+                    "event":"attack"
+                }
+            )
+        }
 
     }
 

@@ -26,9 +26,9 @@ match = {
     "gameroom": "gameroom1",
     "players": []
 }
-
-
 matches.push(match);
+
+
 //helper function to find the right player
 function getPlayer(matchid, id){
     for(let i =0;i<matches[matchid].players.length;i++) {
@@ -58,17 +58,11 @@ io.on('connection', function(socket){
         let player = new Player(10,10, socket.id);
 
         matches[0].players.push(player);
-        io.emit("matchMaker", "gameroom1");
-        let match = {
-            "gameroom" : "gameroom1",
-            "players": []
-        }
-        match.players.push(player);
 
-        matches.push(match);
 
-        io.emit("matchMaker", "gameroom1");
 
+        //io.emit("matchMaker", "gameroom1");
+        io.emit("matchMaker", matches[0]);
 
     });
 
@@ -78,6 +72,7 @@ io.on('connection', function(socket){
      */
     socket.on('gameroom1', function(msg) {
         let p = getPlayer(0, socket.id);
+
         if (msg.events != undefined) {
             for (let i = 0; i < msg.events.length; i++) {
                 events[msg.events[i].event](msg.events[i].params, p);

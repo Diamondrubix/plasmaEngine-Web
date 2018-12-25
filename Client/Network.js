@@ -12,15 +12,17 @@ class Network {
         this.match = null;
     }
 
-    getmatch(){
-        console.log("match maker working");
+    getmatch(callback){
         this.socket.emit("matchMaker","thing");
         this.socket.on("matchMaker",function(msg){
-            console.log("match gotten");
-            net.gameroom = msg
+            net.match = msg;
+            net.gameroom = msg.gameroom;
+            console.log("match room \gotten: "+net.gameroom);
+            callback();
             net.socket.on(net.gameroom,function(m){
 
                 net.match = m;
+                //callback();
                 //console.log(net.match.players[0].x);
             })
         })

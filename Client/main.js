@@ -1,6 +1,5 @@
 function setup(){
 
-    net.getmatch();
 
 
     vendors = ['webkit', 'moz'];
@@ -26,7 +25,6 @@ function setup(){
 
 
     //entities setup
-    guy = new Player(10,10);
     guy.keys = true;
     gameObjects.push(guy);
     /*
@@ -83,10 +81,22 @@ function draw(){
     cx.fillRect(0,0,canvas.width,canvas.height);
     cx.fill();
 
+    guy.tick();
+
+    for(var i=0;i<net.match.players.length;i++){
+        let p = net.match.players[i];
+        cx.beginPath();
+        cx.strokeStyle = "red";
+        cx.rect(p.x,p.y,p.width,p.width);
+        cx.stroke();
+    }
+
+    /*
     for(var i=0; i < gameObjects.length; i++){
         gameObjects[i].tick();
         gameObjects[i].paint();
     }
+    */
 }
 
 function gameLoop() {
@@ -102,5 +112,7 @@ function gameLoop() {
     lastTime = currentTime;
 }
 
-
-setup()
+guy = new Player(10,10);
+net.getmatch(function () {
+    setup();
+});
