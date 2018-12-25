@@ -3,8 +3,8 @@ app = express();
 path = require('path');
 
 
-Drawable = require('./Drawables/Drawable.js');
-Player = require('./Drawables/Player.js');
+Drawable = require('./Shared/Drawable.js');
+Player = require('./Shared/Player.js');
 game = require('./Server/game.js');
 eventhander = require('./Server/eventHandler');
 
