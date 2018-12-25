@@ -89,6 +89,7 @@ class Drawable {
 if (typeof module !== 'undefined') {
     module.exports = Drawable;
 }
+
 if(isNode()){
     module.exports = Drawable;
 }

@@ -26,7 +26,7 @@ class Network {
                 //console.log(net.match.players[0].x);
             })
         })
-        }
+    }
  
     send(msg) {
         this.socket.emit(this.gameroom, msg);

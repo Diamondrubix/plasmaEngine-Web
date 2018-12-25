@@ -5,6 +5,7 @@ path = require('path');
 
 Drawable = require('./Shared/Drawable.js');
 Player = require('./Shared/Player.js');
+Match = require('./Shared/Match.js');
 game = require('./Server/game.js');
 eventhander = require('./Server/eventHandler');
 
@@ -22,10 +23,11 @@ app.get('/', function(req, res){
 
 
 matches = [];
-match = {
+match = new Match("gameroom1");
+/*match = {
     "gameroom": "gameroom1",
     "players": []
-}
+}*/
 matches.push(match);
 
 
@@ -58,8 +60,6 @@ io.on('connection', function(socket){
         let player = new Player(10,10, socket.id);
 
         matches[0].players.push(player);
-
-
 
         //io.emit("matchMaker", "gameroom1");
         io.emit("matchMaker", matches[0]);

@@ -8,8 +8,6 @@ function isClient(){
     return typeof module == 'undefined';
 }
 
-
-
 class Player extends Drawable{
 
 
@@ -113,8 +111,6 @@ class Player extends Drawable{
             this.x = net.match.players[0].x;
             this.y = net.match.players[0].y;
         }
-
-
 
     }
 
