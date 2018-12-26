@@ -1,3 +1,5 @@
+
+
 function setup(){
 
 
@@ -9,7 +11,8 @@ function setup(){
     }
     if (typeof (canvas.getContext) !== undefined) {
         cx = canvas.getContext('2d');
-        gameLoop();
+
+        requestAnimationFrame(gameLoop);
     }
 
 
@@ -81,7 +84,6 @@ function draw(){
     cx.fillRect(0,0,canvas.width,canvas.height);
     cx.fill();
 
-    guy.tick();
 
     for(var i=0;i<net.match.players.length;i++){
         let p = net.match.players[i];
@@ -91,26 +93,15 @@ function draw(){
         cx.stroke();
     }
 
-    /*
-    for(var i=0; i < gameObjects.length; i++){
-        gameObjects[i].tick();
-        gameObjects[i].paint();
-    }
-    */
 }
 
 function gameLoop() {
-    window.requestAnimationFrame(gameLoop);
-
-
-    currentTime = (new Date()).getTime();
-    delta = (currentTime - lastTime) / 1000;
-
-
+    gameTick();
     draw();
-
-    lastTime = currentTime;
+    requestAnimationFrame(gameLoop);
 }
+
+
 
 guy = new Player(10,10);
 net.getmatch(function () {

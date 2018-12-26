@@ -1,0 +1,12 @@
+usefull links that helped me solve certain problems
+I think it is a good idea to collect them here so we can refer to them later if needed.
+
+
+for the predictive server client network stuff I used these two links
+- https://gafferongames.com/post/what_every_programmer_needs_to_know_about_game_networking/
+- http://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html
+
+
+for the game loop i found this usefull
+- https://isaacsukin.com/news/2015/01/detailed-explanation-javascript-game-loops-and-timing
+

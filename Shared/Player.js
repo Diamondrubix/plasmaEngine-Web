@@ -8,6 +8,7 @@ function isClient(){
     return typeof module == 'undefined';
 }
 
+
 class Player extends Drawable{
 
 
