@@ -7,7 +7,7 @@ Drawable = require('./Shared/Drawable.js');
 Player = require('./Shared/Player.js');
 Match = require('./Shared/Match.js');
 game = require('./Server/game.js');
-eventhander = require('./Server/eventHandler');
+eventhander = require('./Shared/eventHandler');
 
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);

@@ -1,9 +1,6 @@
 
 
 function setup(){
-
-
-
     vendors = ['webkit', 'moz'];
     for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
         window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
@@ -12,11 +9,8 @@ function setup(){
     if (typeof (canvas.getContext) !== undefined) {
         cx = canvas.getContext('2d');
 
-        requestAnimationFrame(gameLoop);
+        gameLoop();
     }
-
-
-
     //keys setup
     window.addEventListener('keydown',keydown,false);
     window.addEventListener('keyup',keyup,false);
@@ -24,17 +18,10 @@ function setup(){
     canvas.addEventListener("mouseup", onClickUp, false);
     canvas.addEventListener("mousemove", onmove, false);
     canvas.addEventListener("mousewheel", wheelMove, false);
-
-
-
     //entities setup
     guy.keys = true;
     gameObjects.push(guy);
-    /*
-    net.receive(function(m){
-        match = m;
-    })
-    */
+
 }
 function keydown(e) {
     index = keys.indexOf(e.key);
@@ -93,12 +80,18 @@ function draw(){
         cx.stroke();
     }
 
+    requestAnimationFrame(draw);
+
 }
 
+
+
+
 function gameLoop() {
-    gameTick();
-    draw();
-    requestAnimationFrame(gameLoop);
+    requestAnimationFrame(draw);
+    gameTick()
+
+
 }
 
 
@@ -107,3 +100,4 @@ guy = new Player(10,10);
 net.getmatch(function () {
     setup();
 });
+

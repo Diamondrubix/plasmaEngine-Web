@@ -96,21 +96,31 @@ class Player extends Drawable{
 
 
     tick(){
-        //first part gets and creates the event array sending it to the server
-        this.events = [];
-        this.handleKeys();
-        net.send({
-            "events" : this.events
-        });
+        if(isClient()) {
+            //first part gets and creates the event array sending it to the server
+            this.events = [];
+            this.handleKeys();
 
-        //once this is called it should have recived updates from the server and this will execute those changes
-        super.tick();
+            //everything below should probably be moved to a global event handler
+            net.send({
+                "events": this.events
+            });
 
-        //this part takes the match data recived from the server and updates the objects. maybe it should be moved
-        //somewhere else, but idk we should talk about it.
-        if(net.match!=null) {
-            this.x = net.match.players[0].x;
-            this.y = net.match.players[0].y;
+            //adds the events to the cyclic buffer
+            cyclicBuffer.addState(events);
+
+
+            //second part does the event handling locally
+
+            for (let i = 0; i < events.length; i++) {
+                events[events[i].event](events[i].params, p);
+            }
+
+
+
+
+            //once this is called it should have recived updates from the server and this will execute those changes
+            super.tick();
         }
 
     }

@@ -22,6 +22,8 @@ if (typeof module !== 'undefined') {
     module.exports = Match;
 }
 
+
 if(isNode()){
     module.exports = Match;
 }
+

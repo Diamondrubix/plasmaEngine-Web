@@ -4,7 +4,6 @@ function applyForce(params, player){
     player.x+=params.x;
     player.y+=params.y;
 
-
 }
 
 function emitAttack(){

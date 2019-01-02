@@ -1,0 +1,1 @@
+tickSpeed = 60;

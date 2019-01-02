@@ -3,25 +3,23 @@ i am moving the gameloop out of the main.js cuz it realy should be shared and bo
 the buffer cycle
  */
 
-
-function gameTick(){
-    setTick(function () {
-        guy.tick();
-
-    })
-
-
+function isNode(){
+    return !isClient();
 }
 
 
-function setTick(callback){
-    //window.requestAnimationFrame(gameLoop);
+function isClient(){
+    return typeof module == 'undefined';
+}
 
-    currentTime = (new Date()).getTime();
-    delta = (currentTime - lastTime) / 1000;
+function gameTick(){
+    var lenghtOfTick = 1000/tickSpeed;
+    setInterval(function () {
+        guy.tick();
 
 
-    callback();
 
-    lastTime = currentTime;
+
+    },lenghtOfTick);
+
 }

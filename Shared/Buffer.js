@@ -8,28 +8,29 @@ if they disagree the client is to abaondon their data past that point then fast 
 this should always be possible as its irrelevant what events the client sends, the server should be able to handle it.
  */
 
-
+//NOTE!!!!
+//there is a lot going on with the code right now and i just needed this to work.
+//doing a queue with arrays will run in O(n) time and thus should probably eventually be switched fora datastructure
+//that can do it in O(1) time. as said before, coudn't be bothered to figure out how to do that in javascript at the moment
+//but it should be easy to change later
 class Buffer{
 
-    constructor(){
+    constructor(initState){
         this.states = [];
+        this.states.push(initState);
     }
 
     addState(s){
         this.states.push(s);
     }
 
-}
+    getPlayer(players){
 
+    }
 
-//state would be a inner class in java, but this is javascript so...
-class state {
+    checkState(s){
+        this.states[1].players
 
-    constructor(time, match){
-        this.time = time;
-        this.match = match;
-        
     }
 
 }
-

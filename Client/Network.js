@@ -16,11 +16,12 @@ class Network {
         this.socket.emit("matchMaker","thing");
         this.socket.on("matchMaker",function(msg){
             net.match = msg;
+            cyclicBuffer = new Buffer(msg);
             net.gameroom = msg.gameroom;
             console.log("match room \gotten: "+net.gameroom);
             callback();
             net.socket.on(net.gameroom,function(m){
-
+                //cyclicBuffer.checkState(m);
                 net.match = m;
                 //callback();
                 //console.log(net.match.players[0].x);

@@ -1,4 +1,7 @@
 
+
+cyclicBuffer = null;
+
 canvas = document.getElementById('canvas');
 cw = canvas.width;
 ch = canvas.height;
