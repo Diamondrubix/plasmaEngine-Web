@@ -1,0 +1,31 @@
+<script src="/socket.io/socket.io.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>plasmaEngine-Web</title>
+	</head>
+	<body>
+		<center>
+			<button onclick="startGame('solo')">solo</button>
+			<button onclick="startGame('1v1')">1v1</button>
+			<button onclick="startGame('2v2')">2v2</button>
+		</center>
+	</body>
+</html>
+
+<script type="text/javascript">
+	
+	this.socket = io();
+
+	socket.on("join", function(game){
+	});
+
+	function startGame(gameType){
+		socket.emit("join",gameType);
+	}
+
+
+
+</script>

@@ -13,7 +13,6 @@ class Network {
     }
 
     getmatch(callback){
-        this.socket.emit("matchMaker","thing");
         this.socket.on("matchMaker",function(msg){
             net.match = msg;
             net.gameroom = msg.gameroom;

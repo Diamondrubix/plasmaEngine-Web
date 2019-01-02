@@ -10,24 +10,12 @@ game = require('./Server/game.js');
 eventhander = require('./Server/eventHandler');
 
 var http = require('http').Server(app);
-//var io = require('socket.io')(http);
 io = require('socket.io').listen(http);
 
-app.use(express.static(__dirname + '/'));
 
-
-
-app.get('/', function(req, res){
-    res.sendFile(__dirname + '/Client/game.html');
-});
 
 
 matches = [];
-match = new Match("gameroom1");
-/*match = {
-    "gameroom": "gameroom1",
-    "players": []
-}*/
 matches.push(match);
 
 
@@ -93,9 +81,12 @@ io.on('connection', function(socket){
 
 
 
+process.on('start', function(port) {
 
-var port = 3001;
-http.listen(port, function () {
-    console.log('listening on port '+port);
+    http.listen(port, function () {
+        console.log('new game listening on port '+port);
+        process.send("started");
+    });
+
 });
 
