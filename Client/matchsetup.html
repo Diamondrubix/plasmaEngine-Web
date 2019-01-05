@@ -19,7 +19,8 @@
 	
 	this.socket = io();
 
-	socket.on("join", function(game){
+	socket.on("game_started", function(port){
+		alert("started on port "+port+"!")
 	});
 
 	function startGame(gameType){

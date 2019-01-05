@@ -55,7 +55,11 @@ function matchMake(){
    io.on('connection', function(socket){
       
       socket.on("join", function(game){
-         for(var match in matchQueue){
+
+         for(var i in matchQueue){
+         	var match = matchQueue[i];
+
+
             if(match.name === game){
                addToQueue(match,socket);
                return;
@@ -67,25 +71,32 @@ function matchMake(){
    });
 
    function addToQueue(match,socket){
-      match.players.append(socket);
-      if(match.players.size === match.quota){
+
+      match.players.push(socket);
+
+      if(match.players.length === match.quota){
          startMatch(match);
       }
    }
 
 
    function startMatch(match){
-   	activeGames.append(Object.create(match));
-   	match.players = [];
+
+   	activeGames.push(Object.create(match));
+   
 
    	//eventually use a better method of determining port, so as to not run out of available ports
    	child = cp.fork('gameserver.js');
-   	child.send("start",portCount);
+   	child.send(portCount);
    	portCount++;
 
-   	child.on('started', function() {
-   		for(var playerSocket in match.players){
-   			playerSocket.emit("joinGame", portCount-1);
+
+   	child.on('message', function(msg) {
+   		if(msg=="started"){
+   			for(var i in match.players){
+   				match.players[i].emit("game_started", portCount-1);
+   			}
+   			match.players = [];
    		}
    	});
    }
