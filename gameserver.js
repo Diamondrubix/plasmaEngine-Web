@@ -21,6 +21,7 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/Client/game.html');
 });
 
+keys = []
 
 matches = [];
 match = new Match("gameroom1");
@@ -95,9 +96,12 @@ io.on('connection', function(socket){
 
 
 
-process.on('message', function(port) {
-    http.listen(port, function () {
-        console.log('new game listening on port '+port);
+process.on('message', function(data) {
+    data = JSON.parse(data);
+    keys = data.keys;
+    console.log(data);
+    http.listen(data.port, function () {
+        console.log('new game listening on port '+data.port);
         process.send("started");
     });
 

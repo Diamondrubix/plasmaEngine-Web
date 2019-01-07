@@ -34,7 +34,7 @@ matchQueue = [
 
 
 activeGames = [];
-
+keyMap = {};
 
 function serveWebsite(){
    
@@ -50,6 +50,16 @@ function serveWebsite(){
    });
 }
 
+
+function makeId() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
 
 function matchMake(){
    io.on('connection', function(socket){
@@ -82,17 +92,27 @@ function matchMake(){
 
    function startMatch(match){
 
-   	activeGames.push(Object.create(match));
+      activeMatch = Object.create(match);
+      activeMatch.port = portCount;
+      activeMatch.keys = [];
+      for(let i = 0; i < activeMatch.quota; i++){
+         let id = makeId();
+         activeMatch.keys.push(id);
+         keyMap[id] = activeMatch.port;
+      }
+   	activeGames.push(activeMatch);
    
 
    	//eventually use a better method of determining port, so as to not run out of available ports
    	child = cp.fork('gameserver.js');
-   	child.send(portCount);
+      matchData = JSON.stringify({port: portCount, quota: match.quota, keys: activeMatch.keys});
+   	child.send(matchData);
    	portCount++;
 
 
    	child.on('message', function(msg) {
    		if(msg=="started"){
+
    			for(var i in match.players){
    				match.players[i].emit("game_started", portCount-1);
    			}
